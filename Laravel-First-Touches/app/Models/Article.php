@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Article extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['username', 'email', 'password'];
+    protected $fillable = ['news_id', 'content'];
 
     public function news()
     {
-        return $this->hasMany(News::class);
+        return $this->belongsTo(News::class);
     }
 
-    public function articles()
+    public function attachments()
     {
-        return $this->hasManyThrough(Article::class, News::class);
+        return $this->hasMany(Attachment::class);
     }
 
     public function comments()
